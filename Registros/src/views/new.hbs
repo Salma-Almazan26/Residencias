@@ -1,0 +1,141 @@
+<div class="center text-center ">
+<h1>Nuevo Documento</h1>
+<legend>Bitacora de obra</legend>
+
+</div>
+<div class="center text-center card-footer form-color">
+    <form action="/guardar-datos"  method="POST" class="form-color">
+        <label for="titulo">Nombre de la empresa</label>
+        <input type="text" name="title" placeholder="" class="form-control">
+        <label for="">RFC</label>
+        <input type="text" name="rfc" placeholder="" class="form-control">
+
+        <br>
+        <legend>Datos de la obra</legend>
+
+        <label for="titulo">Nombre de la obra</label>
+        <input type="text" name="obratitulo" placeholder="" class="form-control">
+        <label for="">Direccion</label>
+        <input type="text" name="direccion" placeholder="" class="form-control">
+        <label for="">Numero de contrato</label>
+        <input type="number" name="nocontrato" placeholder="" class="form-control">
+        <label for="">Numero de obra</label>
+        <input type="number" name="noobra" placeholder="" class="form-control">
+        <label for="">Fecha finalizacion</label>
+        <input type="date" name="fecha" placeholder="" class="form-control">
+        <label for="">RFC</label>
+        <input type="text" name="rfc" placeholder="" class="form-control">
+
+        
+        <br>
+        <legend>Datos del contratista</legend>
+
+        <label for="titulo">Nombre o institucion</label>
+        <input type="text" name="nombrecontra" placeholder="" class="form-control">
+        <label for="titulo">Numero de Documento</label>
+        <input type="text" name="nodocumento" placeholder="" class="form-control">
+        <label for="titulo">Nombre de la obra</label>
+        <input type="text" name="obratitulo" placeholder="" class="form-control">
+        <label for="titulo">Direccion</label>
+        <input type="text" name="direccioncontra" placeholder="" class="form-control">
+        <label for="titulo">Telefono</label>
+        <input type="number" name="telefono" placeholder="" class="form-control">
+        <br>
+        <br>
+
+<table id="miTabla">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Descripcion</th>
+                <th>Unidad</th>
+                <th>Cantidad</th>
+                <th>P.Unitario</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        <!--    <tr>
+                <th class="full-width" colspan="6">Preeliminares</th>
+            </tr>
+            <tr>
+                <td><input type="text" placeholder=""></td>
+                <td><input type="text" placeholder=""></td>
+                <td><input type="text" placeholder=""></td>
+                <td><input type="text" placeholder=""></td>
+                <td><input type="text" placeholder=""></td>
+                <td><input type="text" placeholder=""></td>
+            </tr>
+        -->
+            
+        </tbody>
+    </table>
+    <br>
+    <button onclick="agregarFila(event)">Agregar Fila</button>
+    <button onclick="agregarEncabezado(event)">Agregar Encabezado</button>
+    <br>
+
+
+    <script>
+       function agregarFila(event) {
+        event.preventDefault(); // Evitar que el formulario se envíe
+        var table = document.getElementById("miTabla");
+        var newRow = table.tBodies[0].insertRow(-1);
+
+        for (var i = 0; i < table.rows[0].cells.length; i++) {
+            var cell = newRow.insertCell(i);
+            var input = document.createElement("input");
+            input.type = "text";
+
+            // Agregar un evento de cambio al campo de cantidad y precio unitario
+            if (i === 3 || i === 4) {
+                input.addEventListener("input", function () {
+                    calcularTotal(newRow);
+                });
+            }
+
+            cell.appendChild(input);
+        }
+
+        // Crear la celda para el total y asignar una clase para identificarla fácilmente
+        var totalCell = newRow.cells[table.rows[0].cells.length - 1];
+        totalCell.classList.add("total-cell");
+
+        // Calcular el total y mostrarlo en la celda correspondiente
+        calcularTotal(newRow);
+    }
+
+    function calcularTotal(row) {
+        // Obtener los valores de cantidad y precio unitario de la fila
+        var cantidad = parseFloat(row.cells[3].querySelector("input").value) || 0;
+        var precioUnitario = parseFloat(row.cells[4].querySelector("input").value) || 0;
+
+        // Calcular el total y mostrarlo en la celda correspondiente
+        var total = cantidad * precioUnitario;
+        row.cells[row.cells.length - 1].querySelector("input").value = total.toFixed(2);
+    }
+    function agregarEncabezado(event) {
+        event.preventDefault(); // Evitar que el formulario se envíe
+        
+        var table = document.getElementById("miTabla");
+        var headerRow = table.insertRow(table.rows.length);
+        var headerCell = headerRow.insertCell(0);
+        headerCell.colSpan = table.rows[0].cells.length;
+
+        var nuevoEncabezado = prompt("Ingrese el nuevo encabezado") || "Nuevo Encabezado";
+        headerCell.textContent = nuevoEncabezado;
+        // Aplicar estilo a la fuente (negrita)
+        headerCell.style.fontWeight = "bold";
+
+    }
+</script>
+
+        <br>
+
+        <button class="btn btn2 btn-primary btn-block">Guardar</button>
+
+
+        
+                    
+    </form>
+</div>

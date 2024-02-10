@@ -1,0 +1,27 @@
+body{
+    background: #DAD2D2;
+}
+.center{
+    width: 100%;
+}
+.center2{
+    width: 50%;
+}   
+
+.form-color{
+    background: #EDEAEA;
+}
+.btn2{
+    border-radius: 30px;
+}
+table{
+    width: 100%;
+}
+th, td {
+    border: 1px solid;
+    padding: 3px;
+    text-align: center;
+}
+th.full-width {
+    width: 100%;
+}
